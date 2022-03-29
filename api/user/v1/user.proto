@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package api.user.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "kratos-project/api/user/v1;v1";
+
+service User {
+	rpc CreateUser (CreateUserRequest) returns (CreateUserReply);
+	rpc GetUser (GetUserRequest) returns (GetUserReply){
+		option (google.api.http) = {
+			get: "/user/{username}"
+		};
+	};
+	rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply);
+	rpc ListUser (ListUserRequest) returns (ListUserReply);
+}
+
+message CreateUserRequest {
+	int64 id = 1;
+	string username = 2;
+}
+message CreateUserReply {}
+
+message GetUserRequest {
+	string username = 1;
+}
+message GetUserReply {}
+
+message DeleteUserRequest {}
+message DeleteUserReply {}
+
+message ListUserRequest {}
+message ListUserReply {
+	message User {
+		int64 id = 1;
+		string name = 2;
+	}
+	repeated User results = 1;
+}

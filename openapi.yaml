@@ -1,0 +1,369 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /helloworld/{name}:
+        get:
+            tags:
+                - Greeter
+            description: Sends a greeting
+            operationId: Greeter_SayHello
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/HelloReply'
+    /user/{username}:
+        get:
+            tags:
+                - User
+            operationId: User_GetUser
+            parameters:
+                - name: username
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetUserReply'
+    /v1/basePolicies:
+        get:
+            tags:
+                - Policy
+            operationId: Policy_ListPolicy
+            parameters:
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+                - name: size
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListPolicyReply'
+    /v1/basePolicy:
+        post:
+            tags:
+                - Policy
+            description: 服务功能
+            operationId: Policy_CreatePolicy
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/PolicyStruct'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PolicyStruct'
+    /v1/basePolicy/{id}:
+        get:
+            tags:
+                - Policy
+            operationId: Policy_GetPolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PolicyStruct'
+        put:
+            tags:
+                - Policy
+            operationId: Policy_UpdatePolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/PolicyStruct'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PolicyStruct'
+        delete:
+            tags:
+                - Policy
+            operationId: Policy_DeletePolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PolicyStruct'
+    /v1/importPolicies:
+        get:
+            tags:
+                - ImportPolicy
+            operationId: ImportPolicy_ListPolicy
+            parameters:
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+                - name: size
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListImportPolicyReply'
+    /v1/importPolicy:
+        post:
+            tags:
+                - ImportPolicy
+            description: 服务功能
+            operationId: ImportPolicy_CreatePolicy
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ImportPolicyStruct'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ImportPolicyStruct'
+    /v1/importPolicy/{id}:
+        get:
+            tags:
+                - ImportPolicy
+            operationId: ImportPolicy_GetPolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ImportPolicyStruct'
+        put:
+            tags:
+                - ImportPolicy
+            operationId: ImportPolicy_UpdatePolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ImportPolicyStruct'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ImportPolicyStruct'
+        delete:
+            tags:
+                - ImportPolicy
+            operationId: ImportPolicy_DeletePolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ImportPolicyStruct'
+    /v1/importTemplate/{id}:
+        get:
+            tags:
+                - ImportTemplate
+            description: 服务功能
+            operationId: ImportTemplate_GetPolicy
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ImportTemplateStruct'
+components:
+    schemas:
+        GetUserReply:
+            type: object
+            properties: {}
+        HelloReply:
+            type: object
+            properties:
+                message:
+                    type: string
+            description: The response message containing the greetings
+        ImportPolicyStruct:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                baseInfo:
+                    $ref: '#/components/schemas/ImportPolicyStruct_BaseInfo'
+        ImportPolicyStruct_BaseInfo:
+            type: object
+            properties:
+                systemShort:
+                    type: string
+                environment:
+                    type: string
+        ImportTemplateStruct:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                yaml:
+                    type: string
+        ListImportPolicyReply:
+            type: object
+            properties:
+                page:
+                    type: integer
+                    format: int64
+                size:
+                    type: integer
+                    format: int64
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ImportPolicyStruct'
+        ListPolicyReply:
+            type: object
+            properties:
+                page:
+                    type: integer
+                    format: int64
+                size:
+                    type: integer
+                    format: int64
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/PolicyStruct'
+        PolicyStruct:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                baseInfo:
+                    $ref: '#/components/schemas/PolicyStruct_BaseInfo'
+        PolicyStruct_BaseInfo:
+            type: object
+            properties:
+                systemShort:
+                    type: string
+                environment:
+                    type: string
+tags:
+    - name: Greeter
+      description: The greeting service definition.
+    - name: ImportPolicy
+    - name: ImportTemplate
+      description: 服务名
+    - name: Policy
+      description: 服务名
+    - name: User

@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+//包名为小写，并且同目录结构一致，例如：my/package/v1/
+package api.policy.v1;
+
+// http 路由生成需要引入包
+import "google/api/annotations.proto";
+// 调整 package 名字
+// "<project_name>/api/<package_name>/<version>;<version>";
+option go_package = "kratos-project/api/policy/v1;v1";
+
+// 服务名
+service Policy {
+// 服务功能
+	rpc CreatePolicy (PolicyStruct) returns (PolicyStruct){
+		option (google.api.http) = {
+			post: "/v1/basePolicy"
+			body: "*"
+		};
+	};
+	rpc GetPolicy (GetPolicyRequest) returns (PolicyStruct){
+		option (google.api.http) = {
+			get: "/v1/basePolicy/{id}"
+		};
+	};
+	rpc ListPolicy (ListPolicyRequest) returns (ListPolicyReply) {
+		option (google.api.http) = {
+			get: "/v1/basePolicies"
+		};
+	};
+	rpc UpdatePolicy(PolicyStruct) returns (PolicyStruct) {
+		option (google.api.http) = {
+			put: "/v1/basePolicy/{id}"
+			body: "*"
+		};
+	}
+	rpc DeletePolicy (DeletePolicyRequest) returns (PolicyStruct) {
+		option (google.api.http) = {
+			delete: "/v1/basePolicy/{id}"
+		};
+	};
+}
+
+message PolicyStruct {
+	int64 id = 1;
+	string name = 2;
+	optional BaseInfo baseInfo = 3;
+	message BaseInfo{
+		string systemShort = 1;
+		string environment = 2;
+	}
+}
+
+message GetPolicyRequest {
+	int64 id = 1;
+}
+
+message CreatePolicyRequest {
+	string name = 2;
+}
+
+message DeletePolicyRequest {
+	int64 id = 1;
+}
+
+message ListPolicyRequest {
+	int64 page = 1;
+	int64 size = 2;
+	string name = 3;
+}
+message ListPolicyReply {
+	int64 page = 1;
+	int64 size = 2;
+	repeated PolicyStruct data = 3;
+}
+
+service ImportPolicy {
+	// 服务功能
+	rpc CreatePolicy (ImportPolicyStruct) returns (ImportPolicyStruct){
+		option (google.api.http) = {
+			post: "/v1/importPolicy"
+			body: "*"
+		};
+	};
+	rpc GetPolicy (GetImportPolicyRequest) returns (ImportPolicyStruct){
+		option (google.api.http) = {
+			get: "/v1/importPolicy/{id}"
+		};
+	};
+	rpc ListPolicy (ListImportPolicyRequest) returns (ListImportPolicyReply) {
+		option (google.api.http) = {
+			get: "/v1/importPolicies"
+		};
+	};
+	rpc UpdatePolicy(ImportPolicyStruct) returns (ImportPolicyStruct) {
+		option (google.api.http) = {
+			put: "/v1/importPolicy/{id}"
+			body: "*"
+		};
+	}
+	rpc DeletePolicy (DeleteImportPolicyRequest) returns (ImportPolicyStruct) {
+		option (google.api.http) = {
+			delete: "/v1/importPolicy/{id}"
+		};
+	};
+}
+
+message ImportPolicyStruct {
+	int64 id = 1;
+	string name = 2;
+	optional BaseInfo baseInfo = 3;
+	message BaseInfo{
+		string systemShort = 1;
+		string environment = 2;
+	}
+}
+
+message GetImportPolicyRequest {
+	int64 id = 1;
+}
+
+message CreateImportPolicyRequest {
+	string name = 2;
+}
+
+message DeleteImportPolicyRequest {
+	int64 id = 1;
+}
+
+message ListImportPolicyRequest {
+	int64 page = 1;
+	int64 size = 2;
+	string name = 3;
+}
+message ListImportPolicyReply {
+	int64 page = 1;
+	int64 size = 2;
+	repeated ImportPolicyStruct data = 3;
+}

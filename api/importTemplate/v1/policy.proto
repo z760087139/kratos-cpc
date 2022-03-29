@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+//包名为小写，并且同目录结构一致，例如：my/package/v1/
+package api.importTemplate.v1;
+
+// http 路由生成需要引入包
+import "google/api/annotations.proto";
+// 调整 package 名字
+// "<project_name>/api/<package_name>/<version>;<version>";
+option go_package = "kratos-project/api/importTemplate/v1;v1";
+
+// 服务名
+service ImportTemplate {
+// 服务功能
+	rpc GetPolicy (GetTemplateRequest) returns (ImportTemplateStruct){
+		option (google.api.http) = {
+			get: "/v1/importTemplate/{id}"
+		};
+	};
+}
+
+message ImportTemplateStruct {
+	int64 id = 1;
+	string name = 2;
+	string yaml = 3;
+}
+
+message GetTemplateRequest {
+	int64 id = 1;
+}
